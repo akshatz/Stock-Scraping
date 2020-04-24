@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 r = requests.get('https://money.cnn.com/data/world_markets/asia/')
 soup = BeautifulSoup(r.text, 'html.parser')
 resultsRow = soup.find_all("tr")
-tr= resultsRow[1:8]
+tr= resultsRow[1:7]
 results = []
 
 for resultRow in tr:
@@ -29,4 +29,4 @@ results.append({
         'last_update': last_update
     })
 
-print(results)
+# print(results)
