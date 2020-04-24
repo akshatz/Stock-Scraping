@@ -12,7 +12,7 @@ file = '/home/akshatz/Documents/Python/scraping/Stock-scraping/market_trend.csv'
 file_exists = os.stat('market_trend.csv').st_size == 0
 with open("market_trend.csv","a") as f:
     try:
-        header = "Date, Time, Index, Previous close, Day Open, Day High, Day Low, LTP/Close\n"
+        header = "Date, Time, Index, Previous close, Day Open, Day High, Day Low, LTP/Closing Prices\n"
         if file_exists:
             f.write(header)
         driver.get("https://money.cnn.com/data/world_markets/asia/")
