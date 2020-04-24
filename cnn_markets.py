@@ -105,11 +105,9 @@ with open("market_trend.csv","a") as f:
             driver.find_element_by_xpath(final_path).click()
             driver.implicitly_wait(30000)
             title = driver.find_element(By.TAG_NAME, "h1")
-            print(title.text)
             left = driver.find_element(By.ID, "wsod_quoteLeft")
             price = []
             string= left.text
-            print(title.text)
             for k in string:
                 if k.isdigit() == True:
                     price.append(k)
@@ -135,7 +133,6 @@ with open("market_trend.csv","a") as f:
             f.write(price[0:4]+"."+price[4:6]+","+price[6:10]+"."+price[10:12]+","+price[12:16]+"."+price[16:18]+","+price[18:22]+"."+price[22:]+"\n")
             counter = counter + 3
             driver.back()
-        print(counter)
         counter = 3
         while counter < 8:
             final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
