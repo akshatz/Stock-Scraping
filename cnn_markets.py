@@ -5,11 +5,11 @@ import requests
 from datetime import datetime
 now = (datetime.now())
 now = now.strftime("%Y-%m-%d,%H:%M:%S")
-driver = webdriver.Chrome("/home/akshatz/Documents/Python/chromedriver") 
+driver = webdriver.Chrome() 
 # driver.maximize_window()
 index = driver.implicitly_wait(30000)
-file = '/home/akshatz/Documents/Python/scraping/Stock-scraping/market_trend.csv'
-file_exists = os.stat('market_trend.csv').st_size == 0
+file = 'market_trend.csv'
+file_exists = os.stat(file).st_size == 0
 with open("market_trend.csv","a") as f:
     try:
         header = "Date, Time, Index, Previous close, Day Open, Day High, Day Low, LTP/Closing Prices\n"
