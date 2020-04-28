@@ -33,7 +33,6 @@ with open("market_trend.csv","a") as f:
             ltp = driver.find_element_by_xpath("/html/body/div[3]/div[1]/div/div[2]/table/tbody/tr/td[1]/span").text
             ltp = ltp.replace(",", '')
             f.write(price[0:4]+"."+price[4:6]+"," +price[6:10]+"."+price[10:12]+","+price[12:16]+"."+price[16:18]+","+price[18:22]+"."+price[22:25]+","+ltp+"\n")
-            
             driver.back()
             counter = counter + 1
         while counter < 8:
@@ -218,10 +217,8 @@ with open("market_trend.csv","a") as f:
         ltp = driver.find_element_by_xpath("/html/body/div[3]/div[1]/div/div[2]/table/tbody/tr/td[1]/span").text
         ltp = ltp.replace(",", '')    
         f.write(price[0:5]+"."+price[5:7]+"," +price[7:12]+"."+price[12:14]+","+price[14:19]+"."+price[19:21]+","+price[21:26]+"."+price[26:]+","+ltp+"\n")
-        
         f.close()
         driver.quit()
-
     except:
         driver.quit()
         print('error')
