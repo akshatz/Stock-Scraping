@@ -1,12 +1,11 @@
 import os
 from selenium import webdriver 
 from selenium.webdriver.common.by import By
-# import requests
+import requests
 from datetime import datetime
 now = datetime.utcnow()
 now_date = now.strftime("%Y/%m/%d")
 now_time = now.strftime("%H:%M:%S")
-print(now_time)
 driver = webdriver.Chrome() 
 # driver.maximize_window()
 index = driver.implicitly_wait(30000)
@@ -56,8 +55,8 @@ with open("market_trend_copy.csv","a") as f:
                 ltp = ltp.replace(",", '')
                 f.write(price[0:5]+"."+price[5:7]+"," +price[7:12]+"."+price[12:14]+","+price[14:19]+"."+price[19:21]+","+price[21:26]+"."+price[26:]+","+ltp+"\n")
                 driver.back()
-                counter = counter + 1     
-        elif now_time > "05:29:59" and now_time > "05:31:00":
+                counter = counter + 1
+        elif now_time > "05:29:59" and not now_time > "05:31:00":
             counter = 2
             driver.get("https://money.cnn.com/data/world_markets/europe/")
             while counter < 8:
@@ -112,6 +111,7 @@ with open("market_trend_copy.csv","a") as f:
             ltp = ltp.replace(",", '')    
             f.write(price[0:5]+"."+price[5:7]+"," +price[7:12]+"."+price[12:14]+","+price[14:19]+"."+price[19:21]+","+price[21:26]+"."+price[26:]+","+ltp+"\n")
             driver.back()    
+            driver.quit()
         elif now_time > "13:00:00" and not now_time > "13:01:00":
             driver.get('https://money.cnn.com/data/world_markets/americas/')
             counter = 2
