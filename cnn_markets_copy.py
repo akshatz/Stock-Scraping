@@ -4,10 +4,9 @@ from selenium.webdriver.common.by import By
 # import requests
 from datetime import datetime
 now = datetime.utcnow()
-# print(str(now))
 now_date = now.strftime("%Y/%m/%d")
 now_time = now.strftime("%H:%M:%S")
-print (str(now_time), str(now_date))
+print(now_time)
 driver = webdriver.Chrome() 
 # driver.maximize_window()
 index = driver.implicitly_wait(30000)
@@ -18,13 +17,12 @@ with open("market_trend_copy.csv","a") as f:
         header = "Date, Time, Index, Previous close, Day Open, Day High, Day Low, LTP/Closing Prices\n"
         if file_exists:
             f.write(header)
-        if now_time > "02:31:00" and now_time < "02:31:00":
+        if now_time > "02:29:00" and not now_time > "02:31:59":
             driver.get("https://money.cnn.com/data/world_markets/asia/")
-            print("IN TRY") 
             counter = 2
             while counter < 4:
                 final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                f.write(now_date,now.strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
+                f.write(datetime.strftime("%Y/%m/%d"),now.strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
                 final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
                 driver.find_element_by_xpath(final_path).click()
                 driver.implicitly_wait(30000)
@@ -43,7 +41,7 @@ with open("market_trend_copy.csv","a") as f:
                 counter = counter + 1
             while counter < 8:
                 final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                f.write(now_date+","+now.strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
+                f.write(datetime.strftime("%Y/%m/%d")+","+now.strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
                 driver.find_element_by_xpath(final_path).click()
                 driver.implicitly_wait(30000)
                 title = driver.find_element(By.TAG_NAME, "h1")
@@ -59,12 +57,12 @@ with open("market_trend_copy.csv","a") as f:
                 f.write(price[0:5]+"."+price[5:7]+"," +price[7:12]+"."+price[12:14]+","+price[14:19]+"."+price[19:21]+","+price[21:26]+"."+price[26:]+","+ltp+"\n")
                 driver.back()
                 counter = counter + 1     
-        elif now_time > "06:59:59" and now_time < "07:01:00":
+        elif now_time > "05:29:59" and now_time > "05:31:00":
             counter = 2
             driver.get("https://money.cnn.com/data/world_markets/europe/")
             while counter < 8:
                 final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                f.write(now_date+","+now.strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
+                f.write(datetime.strftime("%Y/%m/%d")+","+now.strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
                 driver.find_element_by_xpath(final_path).click()
                 driver.implicitly_wait(30000)
                 title = driver.find_element(By.TAG_NAME, "h1")
@@ -82,7 +80,7 @@ with open("market_trend_copy.csv","a") as f:
                 counter = counter +2
             counter = 3
             final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-            f.write(now_date+","+now.strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
+            f.write(datetime.strftime("%Y/%m/%d")+","+now.strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
             driver.find_element_by_xpath(final_path).click()
             driver.implicitly_wait(30000)
             title = driver.find_element(By.TAG_NAME, "h1")
@@ -99,7 +97,7 @@ with open("market_trend_copy.csv","a") as f:
             driver.back()
             counter = 5
             final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-            f.write(now_date+","+now.strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
+            f.write(datetime.strftime("%Y/%m/%d")+","+now.strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
             driver.find_element_by_xpath(final_path).click()
             driver.implicitly_wait(30000)
             title = driver.find_element(By.TAG_NAME, "h1")
@@ -114,12 +112,12 @@ with open("market_trend_copy.csv","a") as f:
             ltp = ltp.replace(",", '')    
             f.write(price[0:5]+"."+price[5:7]+"," +price[7:12]+"."+price[12:14]+","+price[14:19]+"."+price[19:21]+","+price[21:26]+"."+price[26:]+","+ltp+"\n")
             driver.back()    
-        elif now_time > "15:20:00":
+        elif now_time > "13:00:00" and not now_time > "13:01:00":
             driver.get('https://money.cnn.com/data/world_markets/americas/')
             counter = 2
             while counter <  5:
                 final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                f.write(now_date+","+datetime.utcnow().strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
+                f.write(datetime.strftime("%Y/%m/%d")+","+datetime.utcnow().strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
                 driver.find_element_by_xpath(final_path).click()
                 driver.implicitly_wait(30000)
                 title = driver.find_element(By.TAG_NAME, "h1")
@@ -137,7 +135,7 @@ with open("market_trend_copy.csv","a") as f:
                 counter = counter + 2
             while counter < 7:
                 final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                f.write(now_date+","+datetime.utcnow().strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
+                f.write(datetime.strftime("%Y/%m/%d")+","+datetime.utcnow().strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
                 driver.find_element_by_xpath(final_path).click()
                 driver.implicitly_wait(30000)
                 title = driver.find_element(By.TAG_NAME, "h1")
@@ -156,7 +154,7 @@ with open("market_trend_copy.csv","a") as f:
             counter = 3
             while counter < 8:
                 final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                f.write(now_date+","+datetime.utcnow().strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
+                f.write(datetime.strftime("%Y/%m/%d")+","+datetime.utcnow().strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
                 driver.find_element_by_xpath(final_path).click()
                 driver.implicitly_wait(30000)
                 title = driver.find_element(By.TAG_NAME, "h1")
@@ -176,7 +174,7 @@ with open("market_trend_copy.csv","a") as f:
             counter = 7
             while counter < 5:
                 final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                f.write(now_date+","+datetime.utcnow().strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
+                f.write(datetime.strftime("%Y/%m/%d")+","+datetime.utcnow().strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
                 driver.find_element_by_xpath(final_path).click()
                 driver.implicitly_wait(30000)
                 title = driver.find_element(By.TAG_NAME, "h1")
@@ -194,7 +192,7 @@ with open("market_trend_copy.csv","a") as f:
                 counter = counter + 1
             counter = 5
             final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-            f.write(now_date+","+datetime.utcnow().strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
+            f.write(datetime.strftime("%Y/%m/%d")+","+datetime.utcnow().strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
             driver.find_element_by_xpath(final_path).click()
             driver.implicitly_wait(30000)
             title = driver.find_element(By.TAG_NAME, "h1")
@@ -211,7 +209,7 @@ with open("market_trend_copy.csv","a") as f:
             driver.back()
             counter = 7
             final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-            f.write(now_date+","+datetime.utcnow().strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
+            f.write(datetime.strftime("%Y/%m/%d")+","+datetime.utcnow().strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
             driver.find_element_by_xpath(final_path).click()
             driver.implicitly_wait(30000)
             title = driver.find_element(By.TAG_NAME, "h1")

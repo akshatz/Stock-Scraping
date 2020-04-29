@@ -4,9 +4,8 @@ from selenium.webdriver.common.by import By
 import requests
 from datetime import datetime
 now = (datetime.now())
-now = now.strftime("%Y-%m-%d,%H:%M:%S")
+now = now.strftime("%Y/%m/%d,%H:%M:%S")
 driver = webdriver.Chrome() 
-# driver.maximize_window()
 index = driver.implicitly_wait(30000)
 file = 'market_trend.csv'
 file_exists = os.stat(file).st_size == 0
@@ -15,7 +14,7 @@ with open("market_trend.csv","a") as f:
         header = "Date, Time, Index, Previous close, Day Open, Day High, Day Low, LTP/Closing Prices\n"
         if file_exists:
             f.write(header)
-        if now > "07:00:00":
+        if now > "07:59:00" and  not now > "08:01:00":
             driver.get("https://money.cnn.com/data/world_markets/asia/")
             counter = 2
             while counter < 4:
@@ -55,7 +54,7 @@ with open("market_trend.csv","a") as f:
                 driver.back()
                 counter = counter + 1     
             driver.quit()
-        elif now > "11:00:00":
+        elif now > "11:00:00" and not now > "11:01:00":
             counter = 2
             driver.get("https://money.cnn.com/data/world_markets/europe/")
             while counter < 8:
@@ -111,7 +110,7 @@ with open("market_trend.csv","a") as f:
             f.write(price[0:5]+"."+price[5:7]+"," +price[7:12]+"."+price[12:14]+","+price[14:19]+"."+price[19:21]+","+price[21:26]+"."+price[26:]+","+ltp+"\n")
             driver.back()    
             driver.quit()
-        elif now > "19:00:00":
+        elif now > "19:00:00" and not now > "19:01:01":
             driver.get('https://money.cnn.com/data/world_markets/americas/')
             counter = 2
             while counter <  5:
