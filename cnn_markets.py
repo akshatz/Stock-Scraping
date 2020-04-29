@@ -54,7 +54,7 @@ with open("market_trend.csv","a") as f:
                 driver.back()
                 counter = counter + 1     
             driver.quit()
-        elif now > "11:00:00":# and now > "11:05:00":
+        elif now > "11:00:00" and not now  > "11:05:00":
             counter = 2
             driver.get("https://money.cnn.com/data/world_markets/europe/")
             while counter < 8:
@@ -110,7 +110,7 @@ with open("market_trend.csv","a") as f:
             f.write(price[0:5]+"."+price[5:7]+"," +price[7:12]+"."+price[12:14]+","+price[14:19]+"."+price[19:21]+","+price[21:26]+"."+price[26:]+","+ltp+"\n")
             driver.back()    
             driver.quit()
-        elif now > "19:00:00" and not now > "19:01:01":
+        elif now > "18:00:00": #and not now > "18:05:01":
             driver.get('https://money.cnn.com/data/world_markets/americas/')
             counter = 2
             while counter <  5:
@@ -168,7 +168,7 @@ with open("market_trend.csv","a") as f:
                 f.write(price[0:4]+"."+price[4:6]+"," +price[6:10]+"."+price[10:12]+","+price[12:16]+"."+price[16:18]+","+price[18:22]+"."+price[22:]+","+ltp+"\n")
                 driver.back()
                 counter = counter + 3
-                break
+               break
             counter = 7
             while counter < 5:
                 final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
@@ -224,6 +224,7 @@ with open("market_trend.csv","a") as f:
             driver.quit()
         else:
             f.close()
+            print("Cannot run the file")
             driver.quit()
     except:
         driver.quit()
