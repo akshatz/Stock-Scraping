@@ -15,7 +15,7 @@ with open("market_trend.csv","a") as f:
         header = "Date, Time, Index, Previous close, Day Open, Day High, Day Low, LTP/Closing Prices\n"
         if file_exists:
             f.write(header)
-        if now > "07:59:00" and  now !> "08:45:00":
+        if "07:59:00"> now > "08:45:00":
             driver.get("https://money.cnn.com/data/world_markets/asia/")
             counter = 2
             while counter < 4:
@@ -55,7 +55,7 @@ with open("market_trend.csv","a") as f:
                 driver.back()
                 counter = counter + 1     
             driver.quit()
-        elif now > "11:00:00":# and now > "11:05:00":
+        elif "11:00:00" > now > "11:05:00":
             counter = 2
             driver.get("https://money.cnn.com/data/world_markets/europe/")
             while counter < 8:
@@ -111,11 +111,7 @@ with open("market_trend.csv","a") as f:
             f.write(price[0:5]+"."+price[5:7]+"," +price[7:12]+"."+price[12:14]+","+price[14:19]+"."+price[19:21]+","+price[21:26]+"."+price[26:]+","+ltp+"\n")
             driver.back()    
             driver.quit()
-<<<<<<< HEAD
-        elif now > "18:00:00" and not now > "18:05:01":
-=======
-        elif now > "19:00:00" and not now > "19:01:01":
->>>>>>> parent of 851f04e... Error messaage
+        elif  "18:00:00" > now > "18:05:01":
             driver.get('https://money.cnn.com/data/world_markets/americas/')
             counter = 2
             while counter <  5:
