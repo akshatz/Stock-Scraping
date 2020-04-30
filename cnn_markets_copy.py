@@ -112,7 +112,7 @@ with open("market_trend_copy.csv","a") as f:
             f.write(price[0:5]+"."+price[5:7]+"," +price[7:12]+"."+price[12:14]+","+price[14:19]+"."+price[19:21]+","+price[21:26]+"."+price[26:]+","+ltp+"\n")
             driver.back()    
             driver.quit()
-        elif now_time > "12:00:00" and not now_time > "12:15:00":
+        elif now_time > "13:00:00" and not now_time > "13:01:00":
             driver.get('https://money.cnn.com/data/world_markets/americas/')
             counter = 2
             while counter <  5:
@@ -226,7 +226,6 @@ with open("market_trend_copy.csv","a") as f:
             driver.quit()
         else: 
             f.close()
-            print("Cannot run the file")
             driver.quit()
     except:
         driver.quit()
