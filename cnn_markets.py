@@ -55,7 +55,7 @@ with open("market_trend.csv","a") as f:
                 driver.back()
                 counter = counter + 1     
             driver.quit()
-        elif "11:00:00" > now > "11:05:00":
+        elif "10:00:00" > now > "10s:05:00":
             counter = 2
             driver.get("https://money.cnn.com/data/world_markets/europe/")
             while counter < 8:
