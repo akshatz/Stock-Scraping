@@ -10,7 +10,7 @@ from datetime import datetime
 now = datetime.utcnow()
 now_date = now.strftime("%Y/%m/%d")
 now_time = now.strftime("%H:%M:%S")
-# print(now_time)
+print(now_time)
 driver = webdriver.Chrome() 
 # driver.maximize_window()
 index = driver.implicitly_wait(30000)
@@ -64,7 +64,7 @@ with open("market_trend_copy.csv","a") as f:
                 counter = counter + 1
             driver.quit()
             print(style.GREEN + "Successfully run the program for Asian Stock Market")
-        elif "04:29:00" < now_time < "04:35:00":
+        elif "04:29:00" < now_time > "04:31:00":
             counter = 2
             driver.get("https://money.cnn.com/data/world_markets/europe/")
             while counter < 8:
@@ -121,7 +121,7 @@ with open("market_trend_copy.csv","a") as f:
             driver.back()    
             driver.quit()
             print(style.GREEN + "Successfully run the program for European Stock Market")
-        elif "12:00:00" < now_time < "12:10:00":
+        elif "12:00:00" < now_time >"12:01:00":
             driver.get('https://money.cnn.com/data/world_markets/americas/')
             counter = 2
             while counter <  5:
