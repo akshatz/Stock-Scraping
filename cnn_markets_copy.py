@@ -10,7 +10,7 @@ from datetime import datetime
 now = datetime.utcnow()
 now_date = now.strftime("%Y/%m/%d")
 now_time = now.strftime("%H:%M:%S")
-print(now_time)
+# print(now_time)
 driver = webdriver.Chrome() 
 # driver.maximize_window()
 index = driver.implicitly_wait(30000)
@@ -21,12 +21,13 @@ with open("market_trend_copy.csv","a") as f:
         header = "Date, Time, Index, Previous close, Day Open, Day High, Day Low, LTP/Closing Prices\n"
         if file_exists:
             f.write(header)
-        if now_time > "02:29:00" and now_time < "02:35:00":
+        if "02:45:00" < now_time < "03:00:00":
             driver.get("https://money.cnn.com/data/world_markets/asia/")
             counter = 2
+            print()
             while counter < 4:
                 final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                f.write(now_date,now.strftime("%H:%M:%S")+","+driver.find_element_by_xpath(final_path).text+",")
+                f.write(now_date+","+now_time+","+driver.find_element_by_xpath(final_path).text+",")
                 final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
                 driver.find_element_by_xpath(final_path).click()
                 driver.implicitly_wait(30000)
@@ -61,8 +62,8 @@ with open("market_trend_copy.csv","a") as f:
                 f.write(price[0:5]+"."+price[5:7]+"," +price[7:12]+"."+price[12:14]+","+price[14:19]+"."+price[19:21]+","+price[21:26]+"."+price[26:]+","+ltp+"\n")
                 driver.back()
                 counter = counter + 1
-                driver.quit()
-                print(style.GREEN + "Successfully run the program for american stock market")
+            driver.quit()
+            print(style.GREEN + "Successfully run the program for asian stock market")
         elif now_time > "04:29:00" and now_time < "04:35:00":
             counter = 2
             driver.get("https://money.cnn.com/data/world_markets/europe/")
@@ -239,4 +240,4 @@ with open("market_trend_copy.csv","a") as f:
             print(style.RED+"Cannot run the file")
     except:
         driver.quit()
-        print('error')
+        print(style.RED+ 'error')
