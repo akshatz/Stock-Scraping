@@ -21,7 +21,7 @@ with open("market_trend_copy.csv","a") as f:
         header = "Date, Time, Index, Previous close, Day Open, Day High, Day Low, LTP/Closing Prices\n"
         if file_exists:
             f.write(header)
-        if "02:45:00" < now_time < "03:00:00":
+        if "02:30:00" < now_time < "02:31:00":
             driver.get("https://money.cnn.com/data/world_markets/asia/")
             counter = 2
             print()
@@ -64,7 +64,7 @@ with open("market_trend_copy.csv","a") as f:
                 counter = counter + 1
             driver.quit()
             print(style.GREEN + "Successfully run the program for Asian Stock Market")
-        elif "04:29:00" < now_time > "04:31:00":
+        elif "04:29:00" < now_time < "04:31:00":
             counter = 2
             driver.get("https://money.cnn.com/data/world_markets/europe/")
             while counter < 8:
@@ -121,7 +121,7 @@ with open("market_trend_copy.csv","a") as f:
             driver.back()    
             driver.quit()
             print(style.GREEN + "Successfully run the program for European Stock Market")
-        elif "12:00:00" < now_time >"12:01:00":
+        elif "12:00:00" < now_time <"12:01:00":
             driver.get('https://money.cnn.com/data/world_markets/americas/')
             counter = 2
             while counter <  5:
