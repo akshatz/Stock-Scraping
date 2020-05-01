@@ -63,8 +63,8 @@ with open("market_trend_copy.csv","a") as f:
                 driver.back()
                 counter = counter + 1
             driver.quit()
-            print(style.GREEN + "Successfully run the program for asian stock market")
-        elif now_time > "04:29:00" and now_time < "04:35:00":
+            print(style.GREEN + "Successfully run the program for Asian Stock Market")
+        elif "04:29:00" < now_time < "04:35:00":
             counter = 2
             driver.get("https://money.cnn.com/data/world_markets/europe/")
             while counter < 8:
@@ -120,8 +120,8 @@ with open("market_trend_copy.csv","a") as f:
             f.write(price[0:5]+"."+price[5:7]+"," +price[7:12]+"."+price[12:14]+","+price[14:19]+"."+price[19:21]+","+price[21:26]+"."+price[26:]+","+ltp+"\n")
             driver.back()    
             driver.quit()
-            print(style.GREEN + "Successfully run the program for european stock market")
-        elif now_time > "12:00:00":
+            print(style.GREEN + "Successfully run the program for European Stock Market")
+        elif "12:00:00" < now_time < "12:10:00":
             driver.get('https://money.cnn.com/data/world_markets/americas/')
             counter = 2
             while counter <  5:
