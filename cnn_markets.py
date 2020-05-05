@@ -120,7 +120,7 @@ def stockScraping():
                 driver.back()    
                 driver.quit()
                 print(style.GREEN + "Successfully run the program for European stock market")
-            elif  "17:30:00" < now_time and now_time < "17:31:01":
+            elif  "17:30:00" < now_time and now_time < "17:35:01":
                 driver.get('https://money.cnn.com/data/world_markets/americas/')
                 counter = 2
                 while counter <  5:
