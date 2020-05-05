@@ -22,7 +22,11 @@ def stockScraping():
             header = "Date, Time, Index, Previous close, Day Open, Day High, Day Low, LTP/Closing Prices\n"
             if file_exists:
                 f.write(header)
+<<<<<<< HEAD
             if "02:30:00" < now_time and now_time < "03:30:00":
+=======
+            if "02:30:00" < now_time < "02:31:00":
+>>>>>>> Americas
                 driver.get("https://money.cnn.com/data/world_markets/asia/")
                 counter = 2
                 print()

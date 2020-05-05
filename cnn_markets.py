@@ -8,8 +8,12 @@ from selenium.webdriver.common.by import By
 import requests
 from datetime import datetime
 now = (datetime.now())
+<<<<<<< HEAD
 now_time = now.strftime("%H:%M:%S")
 print(now_time)
+=======
+print(now)
+>>>>>>> Americas
 now = now.strftime("%d-%m-%Y,%H:%M:%S")
 driver = webdriver.Chrome() 
 index = driver.implicitly_wait(30000)
@@ -18,10 +22,18 @@ file_exists = os.stat(file).st_size == 0
 def stockScraping():
     with open(file,"a") as f:
         try:
+<<<<<<< HEAD
             header = "Date, Time, Index, Previous close, Day Open, Day High, Day Low, LTP/Closing Prices\n"
             if file_exists:
                 f.write(header)
             if "07:59:00"< now_time and now_time < "08:01:00":
+=======
+            print(file)
+            header = "Date, Time, Index, Previous close, Day Open, Day High, Day Low, LTP/Closing Prices\n"
+            if file_exists:
+                f.write(header)
+            if "08:00:00"< now < "08:06:00":
+>>>>>>> Americas
                 driver.get("https://money.cnn.com/data/world_markets/asia/")
                 counter = 2
                 while counter < 4:
@@ -61,8 +73,13 @@ def stockScraping():
                     driver.back()
                     counter = counter + 1     
                 driver.quit()
+<<<<<<< HEAD
                 print(style.GREEN + "Successfully run the program for Asian stock market")
             elif "10:01:00" < now_time and now_time < "10:05:00":
+=======
+                print(style.GREEN + "Successfully run the program for asian stock market")
+            elif "10:00:00" < now < "10:01:00":
+>>>>>>> Americas
                 counter = 2
                 driver.get("https://money.cnn.com/data/world_markets/europe/")
                 while counter < 8:
@@ -242,6 +259,10 @@ def stockScraping():
 import datetime as dt 
 d = dt.date.today()
 d = d.weekday()
+<<<<<<< HEAD
+=======
+print(d)
+>>>>>>> Americas
 if d < 6:
     stockScraping()
 else:
