@@ -8,7 +8,8 @@ from selenium.webdriver.common.by import By
 import requests
 from datetime import datetime
 now = (datetime.now())
-print(now)
+now_time = now.strftime("%H:%M:%S")
+print(now_time)
 now = now.strftime("%d-%m-%Y,%H:%M:%S")
 driver = webdriver.Chrome() 
 index = driver.implicitly_wait(30000)
@@ -17,11 +18,10 @@ file_exists = os.stat(file).st_size == 0
 def stockScraping():
     with open(file,"a") as f:
         try:
-            print(file)
             header = "Date, Time, Index, Previous close, Day Open, Day High, Day Low, LTP/Closing Prices\n"
             if file_exists:
                 f.write(header)
-            if "08:00:00"< now < "08:06:00":
+            if "07:59:00"< now_time and now_time < "08:01:00":
                 driver.get("https://money.cnn.com/data/world_markets/asia/")
                 counter = 2
                 while counter < 4:
@@ -61,8 +61,8 @@ def stockScraping():
                     driver.back()
                     counter = counter + 1     
                 driver.quit()
-                print(style.GREEN + "Successfully run the program for asian stock market")
-            elif "10:00:00" < now < "10:01:00":
+                print(style.GREEN + "Successfully run the program for Asian stock market")
+            elif "10:00:00" < now_time and now_time < "10:01:00":
                 counter = 2
                 driver.get("https://money.cnn.com/data/world_markets/europe/")
                 while counter < 8:
@@ -119,7 +119,7 @@ def stockScraping():
                 driver.back()    
                 driver.quit()
                 print(style.GREEN + "Successfully run the program for european stock market")
-            elif  "17:30:00" < now < "17:31:01":
+            elif  "17:30:00" < now_time and now_time < "17:31:01":
                 driver.get('https://money.cnn.com/data/world_markets/americas/')
                 counter = 2
                 while counter <  5:
@@ -242,7 +242,6 @@ def stockScraping():
 import datetime as dt 
 d = dt.date.today()
 d = d.weekday()
-print(d)
 if d < 6:
     stockScraping()
 else:
