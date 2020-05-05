@@ -10,7 +10,7 @@ soup = BeautifulSoup(r.text, 'html.parser')
 
 resultsRow = soup.find_all("table")[0]
 headers = "Symbol, Close, High, Low, Last Trade\n"
-f =open("market_trend_sgx_nifty.csv", "a+")
+f =open("marketTrendSGXNifty.csv", "a+")
 # close = results.getText("td",{"class": "indexes-rates.positve"})[0]
 f.close()
 with open("market_trend_sgx_nifty.csv", "a+") as f:
