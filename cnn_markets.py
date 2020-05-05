@@ -11,6 +11,7 @@ now = (datetime.now())
 now_time = now.strftime("%H:%M:%S")
 print(now_time)
 now = now.strftime("%d-%m-%Y,%H:%M:%S")
+print(now)
 driver = webdriver.Chrome() 
 index = driver.implicitly_wait(30000)
 file = 'market_trend.csv'
@@ -62,7 +63,7 @@ def stockScraping():
                     counter = counter + 1     
                 driver.quit()
                 print(style.GREEN + "Successfully run the program for Asian stock market")
-            elif "10:00:00" < now_time and now_time < "10:01:00":
+            elif "10:01:00" < now_time and now_time < "10:05:00":
                 counter = 2
                 driver.get("https://money.cnn.com/data/world_markets/europe/")
                 while counter < 8:
@@ -118,7 +119,7 @@ def stockScraping():
                 f.write(price[0:5]+"."+price[5:7]+"," +price[7:12]+"."+price[12:14]+","+price[14:19]+"."+price[19:21]+","+price[21:26]+"."+price[26:]+","+ltp+"\n")
                 driver.back()    
                 driver.quit()
-                print(style.GREEN + "Successfully run the program for european stock market")
+                print(style.GREEN + "Successfully run the program for European stock market")
             elif  "17:30:00" < now_time and now_time < "17:31:01":
                 driver.get('https://money.cnn.com/data/world_markets/americas/')
                 counter = 2
