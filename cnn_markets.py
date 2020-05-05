@@ -9,9 +9,7 @@ import requests
 from datetime import datetime
 now = (datetime.now())
 now_time = now.strftime("%H:%M:%S")
-print(now_time)
 now = now.strftime("%d-%m-%Y,%H:%M:%S")
-print(now)
 driver = webdriver.Chrome() 
 index = driver.implicitly_wait(30000)
 file = 'market_trend.csv'

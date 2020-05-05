@@ -10,7 +10,6 @@ from datetime import datetime
 now = datetime.utcnow()
 now_date = now.strftime("%Y/%m/%d")
 now_time = now.strftime("%H:%M:%S")
-print(now_time)
 driver = webdriver.Chrome() 
 # driver.maximize_window()
 index = driver.implicitly_wait(30000)
@@ -22,7 +21,7 @@ def stockScraping():
             header = "Date, Time, Index, Previous close, Day Open, Day High, Day Low, LTP/Closing Prices\n"
             if file_exists:
                 f.write(header)
-            if "02:30:00" < now_time and now_time < "03:30:00":
+            if "02:30:00" < now_time and now_time < "02:31:00":
                 driver.get("https://money.cnn.com/data/world_markets/asia/")
                 counter = 2
                 while counter < 4:
@@ -233,7 +232,7 @@ def stockScraping():
                 ltp = ltp.replace(",", '')    
                 f.write(price[0:5]+"."+price[5:7]+"," +price[7:12]+"."+price[12:14]+","+price[14:19]+"."+price[19:21]+","+price[21:26]+"."+price[26:]+","+ltp+"\n")
                 driver.quit()
-                print(style.GREEN + "Successfully run the program for american stock market")
+                print(style.GREEN + "Successfully run the program for American stock market")
             else: 
                 f.close()
                 driver.quit()
