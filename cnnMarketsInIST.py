@@ -20,7 +20,7 @@ def stockScraping():
             header = "Date, Time, Index, Previous close, Day Open, Day High, Day Low, LTP/Closing Prices\n"
             if file_exists:
                 f.write(header)
-            if "07:59:00"< now_time and now_time < "08:01:00":
+            if "07:59:00"< now_time and now_time < "08:08:00":
                 driver.get("https://money.cnn.com/data/world_markets/asia/")
                 counter = 2
                 while counter < 4:
@@ -61,7 +61,7 @@ def stockScraping():
                     counter = counter + 1     
                 driver.quit()
                 print(style.GREEN + "Successfully run the program for Asian stock market")
-            elif "10:01:00" < now_time and now_time < "10:05:00":
+            elif "10:33:00" < now_time and now_time < "10:35:00":
                 counter = 2
                 driver.get("https://money.cnn.com/data/world_markets/europe/")
                 while counter < 8:
