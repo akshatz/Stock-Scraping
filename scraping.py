@@ -28,5 +28,3 @@ results.append({
         'level': level,
         'last_update': last_update
     })
-
-# print(results)
