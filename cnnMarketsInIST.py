@@ -9,12 +9,10 @@ import requests
 from datetime import datetime
 now = (datetime.now())
 now_time = now.strftime("%H:%M:%S")
-print(now_time)
 now = now.strftime("%d-%m-%Y,%H:%M:%S")
-print(now)
 driver = webdriver.Chrome() 
 index = driver.implicitly_wait(30000)
-file = 'market_trend.csv'
+file = 'marketTrendInIST.csv'
 file_exists = os.stat(file).st_size == 0
 def stockScraping():
     with open(file,"a") as f:
@@ -22,7 +20,7 @@ def stockScraping():
             header = "Date, Time, Index, Previous close, Day Open, Day High, Day Low, LTP/Closing Prices\n"
             if file_exists:
                 f.write(header)
-            if "07:59:00"< now_time and now_time < "08:01:00":
+            if "07:59:00"< now_time and now_time < "08:08:00":
                 driver.get("https://money.cnn.com/data/world_markets/asia/")
                 counter = 2
                 while counter < 4:
@@ -120,7 +118,7 @@ def stockScraping():
                 driver.back()    
                 driver.quit()
                 print(style.GREEN + "Successfully run the program for European stock market")
-            elif  "17:30:00" < now_time and now_time < "17:35:01":
+            elif  "17:32:00" < now_time and now_time < "17:35:00":
                 driver.get('https://money.cnn.com/data/world_markets/americas/')
                 counter = 2
                 while counter <  5:
