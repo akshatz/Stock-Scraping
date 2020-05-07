@@ -1,3 +1,3 @@
 git add .
-git commit -m "`date`" market_trend.csv
+git commit -m "`date`" marketTrendInUTC.csv
 git push
