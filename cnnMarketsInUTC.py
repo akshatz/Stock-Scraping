@@ -244,7 +244,7 @@ def stockScraping():
 import datetime as dt 
 d = dt.date.today()
 d = d.weekday()
-if d < 6:
+if d < 5:
     stockScraping()
 else:
     print("Error")
