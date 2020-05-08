@@ -3,6 +3,7 @@ os.system("")
 class style():
     RED = '\033[31m'
     GREEN = '\033[32m'
+    BOLD = '\033[1m'
 from selenium import webdriver 
 from selenium.webdriver.common.by import By
 import requests
@@ -62,7 +63,7 @@ def stockScraping():
                     driver.back()
                     counter = counter + 1
                 driver.quit()
-                print(style.GREEN + "Successfully run the program for Asian Stock Market")
+                print(style.BOLD+style.GREEN + "Successfully run the program for Asian Stock Market")
             elif "04:29:00" < now_time and now_time < "04:31:00":
                 counter = 2
                 driver.get("https://money.cnn.com/data/world_markets/europe/")
@@ -119,7 +120,7 @@ def stockScraping():
                 f.write(price[0:5]+"."+price[5:7]+"," +price[7:12]+"."+price[12:14]+","+price[14:19]+"."+price[19:21]+","+price[21:26]+"."+price[26:]+","+ltp+"\n")
                 driver.back()    
                 driver.quit()
-                print(style.GREEN + "Successfully run the program for European Stock Market")
+                print(style.BOLD+style.GREEN + "Successfully run the program for European Stock Market")
             elif "12:00:00" < now_time and now_time < "12:01:00":
                 driver.get('https://money.cnn.com/data/world_markets/americas/')
                 counter = 2
@@ -232,7 +233,7 @@ def stockScraping():
                 ltp = ltp.replace(",", '')    
                 f.write(price[0:5]+"."+price[5:7]+"," +price[7:12]+"."+price[12:14]+","+price[14:19]+"."+price[19:21]+","+price[21:26]+"."+price[26:]+","+ltp+"\n")
                 driver.quit()
-                print(style.GREEN + "Successfully run the program for American stock market")
+                print(style.BOLD+style.GREEN + "Successfully run the program for American stock market")
             else: 
                 f.close()
                 driver.quit()
