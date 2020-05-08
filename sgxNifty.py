@@ -23,5 +23,4 @@ with open("market_trend_sgx_nifty.csv", "a+") as f:
                 date = result.find("td",{"class":"indexes-date"}).text
                 f.write(symbol+","+","+","+","+date+"\n")
         except:
-
             print("End")
