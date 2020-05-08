@@ -120,8 +120,7 @@ def stockScraping():
                 driver.back()    
                 driver.quit()
                 print(style.GREEN + "Successfully run the program for European Stock Market")
-            # elif "13:19:00" < now_time: #and now_time < "12:01:00":
-            elif "13:21:00" <now_time:
+            elif "12:00:00" < now_time and now_time < "12:01:00":
                 driver.get('https://money.cnn.com/data/world_markets/americas/')
                 counter = 2
                 while counter <  5:
@@ -245,8 +244,7 @@ def stockScraping():
 import datetime as dt 
 d = dt.date.today()
 d = d.weekday()
-print(d)
-if d < 5:
+if d < 6:
     stockScraping()
 else:
     print("Error")
