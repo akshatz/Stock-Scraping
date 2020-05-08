@@ -7,7 +7,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import requests
 from datetime import datetime
-now = datetime.now()
+now = (datetime.now())
 now_time = now.strftime("%H:%M:%S")
 now = now.strftime("%d-%m-%Y,%H:%M:%S")
 driver = webdriver.Chrome() 
