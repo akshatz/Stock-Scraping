@@ -11,7 +11,7 @@ def stockScraping():
     from datetime import datetime
     now = datetime.now()
     now_time = now.strftime("%H:%M:%S")
-    now_date = now.strftime("%Y/%m%d")
+    now_date = now.strftime("%Y/%m/%d")
     driver = webdriver.Chrome('chromedriver') 
     index = driver.implicitly_wait(30000)
     file = '/home/akshatz/Documents/Python/scraping/Stock-Scraping/marketTrendInUTC.csv'
@@ -141,7 +141,7 @@ def stockScraping():
                     counter = counter + 2
                 while counter < 7:
                     final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                    f.write(now+","+driver.find_element_by_xpath(final_path).text+",")
+                    f.write(now_date+","+now_time+","+driver.find_element_by_xpath(final_path).text+",")
                     driver.find_element_by_xpath(final_path).click()
                     driver.implicitly_wait(30000)
                     title = driver.find_element(By.TAG_NAME, "h1")
