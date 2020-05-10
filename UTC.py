@@ -13,8 +13,7 @@ from datetime import datetime
 def stockScraping():
     now = (datetime.utcnow())
     now_time = now.strftime("%H:%M:%S")
-    now_date = now.strftime("%Y/%m/%d")
-    now = now.strftime("%d-%m-%Y,%H:%M:%S")
+    now = now.strftime("%Y/%m/%d,%H:%M:%S")
     driver = webdriver.Chrome() 
     index = driver.implicitly_wait(30000)
     file = 'marketTrendInUTC.csv'
@@ -23,7 +22,7 @@ def stockScraping():
             header = "Date, Time, Index, Previous close, Day Open, Day High, Day Low, LTP/Closing Prices\n"
             if  Path(file).stat().st_size == 0: 
                 f.write(header)          
-            if "02:30:00"< now_time:# and now_time < "02:31:00":
+            if "02:30:00"< now_time and now_time < "02:31:00":
                 driver.get("https://money.cnn.com/data/world_markets/asia/")
                 counter = 2
                 while counter < 4:
