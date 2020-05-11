@@ -61,7 +61,7 @@ def stockScraping():
                     driver.back()
                     counter = counter + 1     
                 driver.quit()
-                print(style.GREEN + "Successfully run the program for Asian stock market")
+                # print(style.GREEN + "Successfully run the program for Asian stock market")
             elif "10:03:00" < now_time and now_time < "10:10:00":
                 counter = 2
                 driver.get("https://money.cnn.com/data/world_markets/europe/")
@@ -118,7 +118,7 @@ def stockScraping():
                 f.write(price[0:5]+"."+price[5:7]+"," +price[7:12]+"."+price[12:14]+","+price[14:19]+"."+price[19:21]+","+price[21:26]+"."+price[26:]+","+ltp+"\n")
                 driver.back()    
                 driver.quit()
-                print(style.GREEN + "Successfully run the program for European stock market")
+                # print(style.GREEN + "Successfully run the program for European stock market")
             elif "18:00:00" < now_time and now_time < "18:05:00":
                 driver.get('https://money.cnn.com/data/world_markets/americas/')
                 counter = 2
@@ -209,7 +209,7 @@ def stockScraping():
                 for k in string:
                     if k.isdigit() == True:
                         price.append(k)
-                price = ''.join(price)
+                price = ''.join(pricee)
                 ltp = driver.find_element_by_xpath("/html/body/div[3]/div[1]/div/div[2]/table/tbody/tr/td[1]/span").text
                 ltp = ltp.replace(",", '')    
                 f.write(price[0:3]+"."+price[3:5]+"," +price[5:8]+"."+price[8:10]+","+price[10:13]+"."+price[13:15]+","+price[15:18]+"."+price[18:]+","+ltp+"\n")
@@ -231,19 +231,19 @@ def stockScraping():
                 ltp = ltp.replace(",", '')    
                 f.write(price[0:5]+"."+price[5:7]+"," +price[7:12]+"."+price[12:14]+","+price[14:19]+"."+price[19:21]+","+price[21:26]+"."+price[26:]+","+ltp+"\n")
                 driver.quit()
-                print(style.GREEN + "Successfully run the program for american stock market")
+                # print(style.GREEN + "Successfully run the program for american stock market")
             else:
                 f.close()
                 driver.quit()
-                print(style.RED+"Cannot run the file")
+                # print(style.RED+"Cannot run the file")
         except :
             driver.quit()
-            print("Its out of schedule")
+            # print("Its out of schedule")
             
 import datetime as dt 
 d = dt.date.today()
 d = d.weekday()
-if d < 7:
+if d ==0 or d == 1 or d == 2 or d == 3 or d == 4:
     stockScraping()
 else:
-    print("Error")
+    pass
