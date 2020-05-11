@@ -12,7 +12,7 @@ def stockScraping():
     now = (datetime.now())
     now_time = now.strftime("%H:%M:%S")
     now_date = now.strftime("%d-%m-%Y")
-    print(now_time)
+    # print(now_time)
     now = now.strftime("%d-%m-%Y,%H:%M:%S")
     driver = webdriver.Chrome() 
     index = driver.implicitly_wait(30000)
@@ -22,7 +22,7 @@ def stockScraping():
             header = "Date, Time, Index, Previous close, Day Open, Day High, Day Low, LTP/Closing Prices\n"
             if  Path(file).stat().st_size == 0: 
                 f.write(header)
-            if "09:37:00"< now_time:# and now_time < "08:08:00":
+            if "08:00:00"< now_time and now_time < "08:08:00":
                 driver.get("https://money.cnn.com/data/world_markets/asia/")
                 counter = 2
                 while counter < 4:
@@ -236,15 +236,15 @@ def stockScraping():
             else:
                 f.close()
                 driver.quit()
-                print(style.RED+"Cannot run the file")
+                # print(style.RED+"Cannot run the file")
         except :
             driver.quit()
-            print("Its out of schedule")
+            # print("Its out of schedule")
             
 import datetime as dt 
 d = dt.date.today()
 d = d.weekday()
-if d < 7:
+if d ==0 or d == 1 or d == 2 or d == 3 or d == 4:
     stockScraping()
 else:
-    print("Error")
+    pass
