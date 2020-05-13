@@ -243,7 +243,7 @@ def stockScraping():
 import datetime as dt 
 d = dt.date.today()
 d = d.weekday()
-if d ==0 or d == 1 or d == 2 or d == 3 or d == 4:
+if d < 5:
     stockScraping()
 else:
     pass
