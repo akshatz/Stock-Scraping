@@ -215,7 +215,7 @@ def stockScraping():
                 driver.back()
                 counter = 7
                 final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                f.write(now+","+now_time+","+driver.find_element_by_xpath(final_path).text+",")
+                f.write(now+","+driver.find_element_by_xpath(final_path).text+",")
                 driver.find_element_by_xpath(final_path).click()
                 driver.implicitly_wait(30000)
                 title = driver.find_element(By.TAG_NAME, "h1")
