@@ -13,13 +13,13 @@ from datetime import datetime
 def stockScraping():
     now = (datetime.utcnow())
     now_time = now.strftime("%H:%M:%S")
-    now = now.strftime("%Y/%m/%d,%H:%M:%S")
+    now_date = now.strftime("%Y/%m/%d")
     driver = webdriver.Chrome() 
     index = driver.implicitly_wait(30000)
     file = 'marketTrendInUTC.csv'
     with open(file,"a") as f:
         try:
-            header = "Date, Time, Index, Previous close, Day Open, Day High, Day Low, LTP/Closing Prices\n"
+            header = "Date, Index, Previous close, Day Open, Day High, Day Low, LTP/Closing Prices\n"
             if  Path(file).stat().st_size == 0: 
                 f.write(header)          
             if "02:30:00" < now_time and now_time < "02:32:00":
@@ -27,7 +27,7 @@ def stockScraping():
                 counter = 2
                 while counter < 4:
                     final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                    f.write(now+","+driver.find_element_by_xpath(final_path).text+",")
+                    f.write(now_date+","+driver.find_element_by_xpath(final_path).text+",")
                     driver.find_element_by_xpath(final_path).click()
                     driver.implicitly_wait(30000)
                     title = driver.find_element(By.TAG_NAME, "h1")
@@ -45,7 +45,7 @@ def stockScraping():
                     counter = counter + 1
                 while counter < 8:
                     final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                    f.write(now+","+driver.find_element_by_xpath(final_path).text+",")
+                    f.write(now_date+","+driver.find_element_by_xpath(final_path).text+",")
                     driver.find_element_by_xpath(final_path).click()
                     ltp = driver.find_element_by_xpath("/html/body/div[3]/div[1]/div/div[2]/table/tbody/tr/td[1]/span").text
                     ltp = ltp.replace(",", '')
@@ -67,7 +67,7 @@ def stockScraping():
                 driver.get("https://money.cnn.com/data/world_markets/europe/")
                 while counter < 8:
                     final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                    f.write(now+","+driver.find_element_by_xpath(final_path).text+",")
+                    f.write(now_date+","+driver.find_element_by_xpath(final_path).text+",")
                     driver.find_element_by_xpath(final_path).click()
                     driver.implicitly_wait(30000)
                     title = driver.find_element(By.TAG_NAME, "h1")
@@ -85,7 +85,7 @@ def stockScraping():
                     counter = counter +2
                 counter = 3
                 final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                f.write(now+","+driver.find_element_by_xpath(final_path).text+",")
+                f.write(now_date+","+driver.find_element_by_xpath(final_path).text+",")
                 driver.find_element_by_xpath(final_path).click()
                 driver.implicitly_wait(30000)
                 title = driver.find_element(By.TAG_NAME, "h1")
@@ -102,7 +102,7 @@ def stockScraping():
                 driver.back()
                 counter = 5
                 final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                f.write(now+","+driver.find_element_by_xpath(final_path).text+",")
+                f.write(now_date+","+driver.find_element_by_xpath(final_path).text+",")
                 driver.find_element_by_xpath(final_path).click()
                 driver.implicitly_wait(30000)
                 title = driver.find_element(By.TAG_NAME, "h1")
@@ -123,7 +123,7 @@ def stockScraping():
                 counter = 2
                 while counter <  5:
                     final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                    f.write(now+","+driver.find_element_by_xpath(final_path).text+",")
+                    f.write(now_date+","+driver.find_element_by_xpath(final_path).text+",")
                     driver.find_element_by_xpath(final_path).click()
                     driver.implicitly_wait(30000)
                     title = driver.find_element(By.TAG_NAME, "h1")
@@ -141,7 +141,7 @@ def stockScraping():
                     counter = counter + 2
                 while counter < 7:
                     final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                    f.write(now+","+driver.find_element_by_xpath(final_path).text+",")
+                    f.write(now_date+","+driver.find_element_by_xpath(final_path).text+",")
                     driver.find_element_by_xpath(final_path).click()
                     driver.implicitly_wait(30000)
                     title = driver.find_element(By.TAG_NAME, "h1")
@@ -160,7 +160,7 @@ def stockScraping():
                 counter = 3
                 while counter < 8:
                     final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                    f.write(now+","+driver.find_element_by_xpath(final_path).text+",")
+                    f.write(now_date+","+driver.find_element_by_xpath(final_path).text+",")
                     driver.find_element_by_xpath(final_path).click()
                     driver.implicitly_wait(30000)
                     title = driver.find_element(By.TAG_NAME, "h1")
@@ -180,7 +180,7 @@ def stockScraping():
                 counter = 7
                 while counter < 5:
                     final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                    f.write(now+","+driver.find_element_by_xpath(final_path).text+",")
+                    f.write(now_date+","+driver.find_element_by_xpath(final_path).text+",")
                     driver.find_element_by_xpath(final_path).click()
                     driver.implicitly_wait(30000)
                     title = driver.find_element(By.TAG_NAME, "h1")
@@ -198,7 +198,7 @@ def stockScraping():
                     counter = counter + 1
                 counter = 5
                 final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                f.write(now+","+driver.find_element_by_xpath(final_path).text+",")
+                f.write(now_date+","+driver.find_element_by_xpath(final_path).text+",")
                 driver.find_element_by_xpath(final_path).click()
                 driver.implicitly_wait(30000)
                 title = driver.find_element(By.TAG_NAME, "h1")
@@ -215,7 +215,7 @@ def stockScraping():
                 driver.back()
                 counter = 7
                 final_path = f'/html/body/div[3]/div[1]/div[1]/div[2]/table/tbody/tr[{counter}]/td[2]/a'.format(counter)
-                f.write(now+","+driver.find_element_by_xpath(final_path).text+",")
+                f.write(now_date+","+driver.find_element_by_xpath(final_path).text+",")
                 driver.find_element_by_xpath(final_path).click()
                 driver.implicitly_wait(30000)
                 title = driver.find_element(By.TAG_NAME, "h1")
