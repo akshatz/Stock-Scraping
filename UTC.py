@@ -15,6 +15,7 @@ def stockScraping():
     now_time = now.strftime("%H:%M:%S")
     now_date = now.strftime("%Y/%m/%d")
     driver = webdriver.Chrome() 
+    driver.maximize_window()
     index = driver.implicitly_wait(30000)
     file = 'marketTrendInUTC.csv'
     with open(file,"a") as f:
