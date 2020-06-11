@@ -1,18 +1,3 @@
-# import requests 
-
-# from bs4 import BeautifulSoup
-
-# url = "https://www.worldometers.info/coronavirus/"
-
-# page = requests.get("https://www.worldometers.info/coronavirus/")
-
-# soup = BeautifulSoup(page.text, 'lxml')
-
-# elements = soup.findAll(tags='tr')
-
-# for i in elements:
-#     print(i.find('td[3]').getText)
-
 import requests 
 from bs4 import BeautifulSoup
 
